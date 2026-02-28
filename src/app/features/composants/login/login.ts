@@ -1,7 +1,7 @@
 import {Component, signal} from '@angular/core';
 import {AuthService} from '../../../core/services/auth.service';
 import{Router} from '@angular/router';
-import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,5 +16,10 @@ export class Login {
   onSubmit(){
     console.log("Tentative de connexion")
   }
+
+  loginFormGroup: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  })
 
 }
