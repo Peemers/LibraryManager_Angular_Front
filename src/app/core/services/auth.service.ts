@@ -1,6 +1,6 @@
 import {computed, inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LoginRequestDTO, LoginResponseDTO, User, UserSignUpDTO} from '../../shared/models/auth.models';
+import {LoginRequestDTO, LoginResponceDTO, User, UserSignUpDTO} from '../../shared/models/auth.models';
 import {Observable, tap} from 'rxjs';
 
 @Injectable({
@@ -22,9 +22,9 @@ export class AuthService {
     }
   }
 
-  login(credentials: LoginRequestDTO) {
-    return this.http.post<LoginResponseDTO>(`${this.apiUrl}/login`, credentials).pipe(
-      tap((response: LoginResponseDTO) => {
+  login(credentials: LoginResponceDTO) {
+    return this.http.post<LoginResponceDTO>(`${this.apiUrl}/login`, credentials).pipe(
+      tap((response: LoginResponceDTO) => {
         this._currentUser.set(response.user)
 
         localStorage["setItem"]("auth_token", response.token)

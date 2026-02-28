@@ -1,1 +1,31 @@
-<p>login works!</p>
+<h1>Login Page</h1>
+
+@if (errorMessage()){
+  <div class="alert alert-danger">
+    {{errorMessage()}}
+  </div>
+}
+
+<form [formGroup]="loginFormGroup" class="row" (ngSubmit)="onSubmit()">
+  <div class="mb-3 col-4">
+    <label class="form-label" for="loginEmail"> Email </label>
+    <input class="form-control" type="email" formControlName="email" id="loginEmail">
+
+    @if (loginFormGroup.get("email")?.invalid && loginFormGroup.get("email")?.touched){
+      <div class="text-danger">L'e-mail est requis</div>
+    }
+  </div>
+
+  <div class="mb-3 col-4">
+    <label class="form-label" for="loginPassword"> Password </label>
+    <input class="form-control" type="password" formControlName="password" id="loginPassword">
+
+    @if (loginFormGroup.get("password")?.invalid && loginFormGroup.get("password")?.touched){
+      <div class="text-danger">Le password est requis</div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <button class="btn btn-danger" [disabled]="loginFormGroup.invalid">Valider</button>
+  </div>
+</form>

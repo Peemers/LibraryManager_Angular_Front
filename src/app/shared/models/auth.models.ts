@@ -16,7 +16,7 @@ readonly email : string;
 readonly password: string;
 }
 
-export interface LoginResponseDTO{
+export interface LoginResponceDTO{
 readonly user : User;
 readonly token: string;
 }
