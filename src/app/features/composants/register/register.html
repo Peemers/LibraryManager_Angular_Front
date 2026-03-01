@@ -4,7 +4,7 @@
   </div>
 }
 
-<form [formGroup]="registerFormGroup" class="row" (ngSubmit)="onSubmit()">
+<form [formGroup]="registerFormGroup" class="col bg-secondary" (ngSubmit)="onSubmit()">
   <div class="mb-3 col-4">
     <label class="form-label" for="registerEmail"> Email </label>
     <input class="form-control" type="email" formControlName="email" id="registerEmail">
