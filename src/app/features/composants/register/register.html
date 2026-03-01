@@ -1,1 +1,54 @@
-<p>register works!</p>
+@if (errorMessage()) {
+  <div class="alert alert-danger">
+    {{ errorMessage() }}
+  </div>
+}
+
+<form [formGroup]="registerFormGroup" class="row" (ngSubmit)="onSubmit()">
+  <div class="mb-3 col-4">
+    <label class="form-label" for="registerEmail"> Email </label>
+    <input class="form-control" type="email" formControlName="email" id="registerEmail">
+
+    @if (registerFormGroup.get("email")?.invalid && registerFormGroup.get("email")?.touched) {
+      <div class="text-danger small">
+        @if (registerFormGroup.get("email")?.errors?.['required']){L'e-mail est requis}
+        @if (registerFormGroup.get("email")?.errors?.['email']) {Format d'e-mail invalide.}
+      </div>
+    }
+  </div>
+
+  <div class="mb-3 col-4">
+    <label class="form-label" for="registerPassword"> Password </label>
+    <input class="form-control" type="password" formControlName="password" id="registerPassword">
+
+    @if (registerFormGroup.get("password")?.invalid && registerFormGroup.get("password")?.touched){
+      <div class="text-danger"> Un password est requis (min 6 caractères).</div>
+    }
+  </div>
+
+  <div class="mb3 col-4">
+    <label class="form-label" for="registerFirstName"> Prénom </label>
+    <input class="form-control" type="text" formControlName="first_name" id="registerFirstName">
+  </div>
+
+  <div class="mb-3 col-4">
+    <label class="form-label" for="registerLastName"> Nom </label>
+    <input class="form-control" type="text" formControlName="last_name" id="registerLastName">
+  </div>
+
+  <div class="mb-3">
+    <button type="submit"
+            class="btn btn-outline-dark"
+            [disabled]="registerFormGroup.invalid || isSubmitting()">
+      @if (isSubmitting()) {
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status"> Inscription en cours...</span>
+      } @else {
+        S'inscrire
+      }
+    </button>
+  </div>
+  <div class="col-12 text-center mt-3">
+    <a routerLink="/login" class="text-decoration-none"> Deja un compte ? Se connecter </a>
+  </div>
+</form>
