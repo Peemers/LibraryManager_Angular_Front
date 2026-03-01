@@ -40,7 +40,7 @@ export class AuthService {
   };
 
   register(data: UserSignUpDTO ):Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}User/CreateUser`, data)
+    return this.http.post<void>(`${this.apiUrl}/CreateUser`, data)
   };
 }
 

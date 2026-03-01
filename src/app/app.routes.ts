@@ -15,10 +15,17 @@ export const routes: Routes = [
       .then(m => m.Dashboard),
     canActivate: [authGuard]
   },
+  {
+    path: 'register',
+    loadComponent: () => import('./features/composants/register/register')
+      .then(m => m.Register),
+  },
   //eagerLoading
   {
     path:'',
     redirectTo:'login',
     pathMatch: 'full'
   }
+
+
 ];

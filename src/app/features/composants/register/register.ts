@@ -36,7 +36,7 @@ export class Register {
     this.isSubmitting.set(true);
     this.errorMessage.set(null)
 
-    const signUpData = this.registerFormGroup.value() as UserSignUpDTO;
+    const signUpData = this.registerFormGroup.value as UserSignUpDTO;
 
     this._authService.register(signUpData).subscribe({
       next: () => {
