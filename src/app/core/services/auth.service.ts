@@ -39,9 +39,9 @@ export class AuthService {
     localStorage.removeItem("auth_user");
   };
 
-  register(register: UserSignUpDTO ):Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/createUser`, register).pipe()
-  }
+  register(data: UserSignUpDTO ):Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}User/CreateUser`, data)
+  };
 }
 
 
