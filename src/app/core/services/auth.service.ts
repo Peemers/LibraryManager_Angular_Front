@@ -14,20 +14,20 @@ export class AuthService {
   readonly currentUser = this._currentUser.asReadonly();
   readonly isAuthenticated = computed(() => this._currentUser() !== null);
 
-  constructor() {
-    const savedUser = localStorage.getItem("auth_user");
+  constructor() { //constructeur pour l'objet
+    const savedUser = localStorage.getItem("auth_user"); //mettre le authuser dans localStorage des la creation de l'objet
     if (savedUser) {
-      const user = JSON.parse(savedUser) as User;
+      const user = JSON.parse(savedUser) as User; //transformation en jso
       this._currentUser.set(user);
     }
   }
 
-  login(credentials: LoginResponceDTO) {
+  login(credentials: LoginRequestDTO) {
     return this.http.post<LoginResponceDTO>(`${this.apiUrl}/login`, credentials).pipe(
       tap((response: LoginResponceDTO) => {
         this._currentUser.set(response.user)
 
-        localStorage["setItem"]("auth_token", response.token)
+        localStorage.setItem("auth_token", response.token) //insertion
         localStorage.setItem("auth_user", JSON.stringify(response.user));
       })
     )
@@ -37,6 +37,10 @@ export class AuthService {
     this._currentUser.set(null);
     localStorage.removeItem("auth_token");
     localStorage.removeItem("auth_user");
+  };
+
+  register(register: UserSignUpDTO ):Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/createUser`, register).pipe()
   }
 }
 

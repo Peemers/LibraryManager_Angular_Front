@@ -4,8 +4,6 @@ import {AuthService} from '../../../core/services/auth.service';
 import {Router} from '@angular/router';
 import {LoginRequestDTO, LoginResponceDTO} from '../../../shared/models/auth.models';
 import {CommonModule} from '@angular/common';
-import {disableVersionCheck} from '@angular/cli/src/utilities/environment-options';
-import {email} from '@angular/forms/signals';
 
 @Component({
   selector: 'app-login',
@@ -23,17 +21,12 @@ export class Login {
   onSubmit(){
     if (this.loginFormGroup.invalid) return
 
-    const credentials = this.loginFormGroup.value as LoginResponceDTO
+    const credentials = this.loginFormGroup.value as LoginRequestDTO
 
     this.authService.login(credentials).subscribe({
-      next: (response) => {
-        this.router.navigate(['/dashboard']); //a changer plus tard
-      },
-      error: (error) => {
-        this.errorMessage.set("Username or password is incorrect");
-        console.error("Erreur de connexion", error);
-      }
-    })
+      next: () => this.router.navigate(['/dashboard']),
+      error: (error) => this.errorMessage.set("erreur de connexion")
+    });
   }
 
   loginFormGroup: FormGroup = new FormGroup({

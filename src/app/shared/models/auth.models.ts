@@ -2,8 +2,8 @@
   readonly email: string;
   readonly password: string;
   readonly role: string;
-  readonly  first_name: string;
-  readonly  last_name: string;
+  readonly first_name: string;
+  readonly last_name: string;
 }
 
 export interface Role {
@@ -24,6 +24,6 @@ readonly token: string;
 export interface UserSignUpDTO{
   email : string;
   password: string;
-  lastname?: string;
-  firstname?: string;
+  last_name?: string;
+  first_name?: string;
 }

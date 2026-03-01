@@ -1,0 +1,7 @@
+@if (user(); as u) { <!--as u pour ne pas reexecuter le signal user()-->
+
+  <h1>Bienvenue sur votre DashBoard {{ u.first_name }}</h1>
+  <button class="btn btn-outline-dark" (click)="onLogOut()">Logout</button>
+} @else {
+  <p>Chargement ou utilisateur non connecté</p>
+}
