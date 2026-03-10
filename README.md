@@ -1,59 +1,70 @@
-# LibraryFront
+# Library-Front
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+Library-Front est une application web moderne de gestion de bibliothèque développée avec **Angular 19**. Elle offre une interface utilisateur intuitive pour la gestion des utilisateurs, l'authentification et le suivi des activités via un tableau de bord.
 
-## Development server
+## 🚀 Fonctionnalités
 
-To start a local development server, run:
+* **Gestion de l'Authentification :** Système complet de connexion et d'inscription.
+* **Sécurité par Guards :** Protection des routes sensibles (comme le tableau de bord) pour restreindre l'accès aux utilisateurs non authentifiés.
+* **Tableau de Bord Dynamique :** Visualisation des données et des statistiques de la bibliothèque.
+* **Interface Responsive :** Design moderne utilisant les dernières fonctionnalités d'Angular.
 
-```bash
-ng serve
-```
+## 🛠️ Stack Technique
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* **Framework :** Angular 19.0.5.
+* **Langage :** TypeScript.
+* **Gestion d'état :** Utilisation des `Signals` d'Angular pour une réactivité optimale.
+* **Communication API :** Client HTTP Angular pour les requêtes REST.
+* **Styles :** CSS3.
 
-## Code scaffolding
+## 📂 Structure du Projet
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+L'application suit une architecture modulaire et structurée :
 
-```bash
-ng generate component component-name
-```
+* **`src/app/core/` :** Contient les services globaux, comme `AuthService` pour la gestion de l'authentification et des jetons.
+* **`src/app/features/` :** Regroupe les composants principaux par domaine fonctionnel :
+    * `dashboard/` : Logique d'affichage des statistiques.
+    * `login/` & `register/` : Formulaires d'accès utilisateur.
+    * `layout/` : Éléments structurels comme la barre de navigation.
+* **`src/app/shared/` :** Contient les modèles de données (interfaces) partagés dans toute l'application.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛣️ Navigation (Routes)
 
-```bash
-ng generate --help
-```
+L'application utilise le routeur Angular avec les chemins suivants :
 
-## Building
+| Chemin | Composant | Accès |
+| :--- | :--- | :--- |
+| `/login` | LoginComponent | Public |
+| `/register` | RegisterComponent | Public |
+| `/dashboard` | DashboardComponent | **Privé** (AuthGuard requis) |
+| `/` (par défaut) | Redirection vers `/login` | Public |
 
-To build the project run:
+## ⚙️ Configuration et Installation
 
-```bash
-ng build
-```
+### Prérequis
+* [Node.js](https://nodejs.org/) (version compatible avec Angular 19)
+* [Angular CLI](https://angular.io/cli) installé globalement (`npm install -g @angular/cli`)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Étapes d'installation
+1.  **Cloner le dépôt :**
+    ```bash
+    git clone <url-du-repo>
+    cd LibraryManager_Angular_Front
+    ```
 
-## Running unit tests
+2.  **Installer les dépendances :**
+    ```bash
+    npm install
+    ```
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+3.  **Lancer le serveur de développement :**
+    ```bash
+    ng serve
+    ```
+    L'application sera accessible sur `http://localhost:4200/`.
 
+## 🧪 Tests
+
+Pour exécuter les tests unitaires via [Karma](https://karma-runner.github.io) :
 ```bash
 ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
